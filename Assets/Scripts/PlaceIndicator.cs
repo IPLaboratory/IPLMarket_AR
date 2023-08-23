@@ -2,17 +2,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlaceIndicator : MonoBehaviour
 {
     public ARRaycastManager arRaycastManager;
     public GameObject placementIndicator;
+    public Button button;
 
     private Pose placementPose;
     private bool placementPoseIsValid = false;
+    private bool isFurnitueOnline = false;
+    private TextMeshProUGUI buttonText;
+
+    void Awake()
+    {
+        buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+    }
 
     void Update()
     {
+        IsFurnitureOnline();
         UpdatePlacementPose();
         UpdatePlacementIndicator();
     }
@@ -22,13 +33,20 @@ public class PlaceIndicator : MonoBehaviour
     {
         if (placementPoseIsValid)
         {
-            placementIndicator.SetActive(true);
+            if (!isFurnitueOnline)
+            {
+                placementIndicator.SetActive(true);
+            }
+
             placementIndicator.transform.SetPositionAndRotation(
                 new Vector3(placementPose.position.x, placementPose.position.y + 0.1f, placementPose.position.z), placementPose.rotation);
         }
         else
         {
-            placementIndicator.SetActive(false);
+            if (!isFurnitueOnline)
+            {
+                placementIndicator.SetActive(false);
+            }
         }
     }
 
@@ -45,6 +63,19 @@ public class PlaceIndicator : MonoBehaviour
         if (placementPoseIsValid)
         {
             placementPose = hits[0].pose;
+        }
+    }
+
+    //Hiding the indicator when furniture is spawned.
+    private void IsFurnitureOnline()
+    {
+        if (buttonText.text.Equals("Image_Input"))
+        {
+            isFurnitueOnline = false;
+        }
+        else if (buttonText.text.Equals("Delete"))
+        {
+            isFurnitueOnline = true;
         }
     }
 }
