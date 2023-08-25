@@ -13,6 +13,7 @@ public class FurnitureCollocationButton : MonoBehaviour
     public Button button;
     public Transform furniturePool;
     public ARRaycastManager arRaycastManager;
+    public Material furnitureMaterial;
 
     private GameObject instantiatedGesture;
     private GameObject loadFurniture;
@@ -21,7 +22,7 @@ public class FurnitureCollocationButton : MonoBehaviour
     // Start is called before the first frame update.
     void Awake()
     {
-        furniturePath = "Furniture/###";
+        furniturePath = "Furniture/mesh";
         loadFurniture = Resources.Load<GameObject>(furniturePath);
         button.onClick.AddListener(CollocationButtonClickEvent);
     }
@@ -36,10 +37,13 @@ public class FurnitureCollocationButton : MonoBehaviour
             
             button.GetComponent<Image>().sprite = buttonImages[0];
             placementIndicator.SetActive(false);
-
             GameObject placeFurniture = Instantiate(loadFurniture, placementIndicator.transform.position, placementIndicator.transform.rotation) as GameObject;
+
+            
+            //placeFurniture.GetComponent<Renderer>().material = furnitureMaterial;
             furniturePool.transform.position = placementIndicator.transform.position;
             placeFurniture.transform.SetParent(furniturePool);
+            furniturePool.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material = furnitureMaterial;
             placeFurniture.transform.position = new Vector3(
                 placementIndicator.transform.position.x, placementIndicator.transform.position.y + (GetHeight(placeFurniture) / 2f), placementIndicator.transform.position.z);
             buttonText.SetText("Delete");
