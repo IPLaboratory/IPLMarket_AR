@@ -1323,6 +1323,7 @@ GameObject:
   - component: {fileID: 1689315702}
   - component: {fileID: 1689315701}
   - component: {fileID: 1689315703}
+  - component: {fileID: 1689315704}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
@@ -1345,7 +1346,6 @@ MonoBehaviour:
   arRaycastManager: {fileID: 1563121798}
   placementIndicator: {fileID: 782628375}
   button: {fileID: 989220353}
-  log: {fileID: 0}
 --- !u!4 &1689315702
 Transform:
   m_ObjectHideFlags: 0
@@ -1374,6 +1374,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 2b6da7d6462ad4fef98e4c6e18367638, type: 2}
+--- !u!114 &1689315704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689315700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3295fb4ea2ca54043aee858fd537b26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  furniturePool: {fileID: 1890635949}
+  arRaycastManager: {fileID: 1563121798}
 --- !u!1 &1773036373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7271979928740220151, guid: e5a381bffe5404f0184511e6c28e6a0d, type: 3}
