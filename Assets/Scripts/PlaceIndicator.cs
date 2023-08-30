@@ -23,6 +23,7 @@ public class PlaceIndicator : MonoBehaviour
 
     void Update()
     {
+        
         IsFurnitureOnline();
         UpdatePlacementPose();
         UpdatePlacementIndicator();
@@ -31,6 +32,7 @@ public class PlaceIndicator : MonoBehaviour
     // Collocate the indicator at the position by UpdatePlacementPose().
     private void UpdatePlacementIndicator()
     {
+        
         if (placementPoseIsValid)
         {
             if (!isFurnitueOnline)
@@ -53,12 +55,13 @@ public class PlaceIndicator : MonoBehaviour
     // Update position of the indicator by center of raycast hit and center of the screen.
     private void UpdatePlacementPose()
     {
-        var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        Camera arCamera = Camera.main;
+        var screenCenter = arCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         var hits = new List<ARRaycastHit>();
+        
         arRaycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
-
         placementPoseIsValid = hits.Count > 0;
-
+        
         // Saving position to locate the indicator.
         if (placementPoseIsValid)
         {
@@ -69,6 +72,7 @@ public class PlaceIndicator : MonoBehaviour
     //Hiding the indicator when furniture is spawned.
     private void IsFurnitureOnline()
     {
+        
         if (buttonText.text.Equals("Image_Input"))
         {
             isFurnitueOnline = false;

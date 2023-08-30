@@ -14,6 +14,7 @@ public class FurnitureCollocationButton : MonoBehaviour
     public Transform furniturePool;
     public ARRaycastManager arRaycastManager;
     public Material furnitureMaterial;
+    public GameObject gesture;
 
     private GameObject instantiatedGesture;
     private GameObject loadFurniture;
@@ -39,7 +40,7 @@ public class FurnitureCollocationButton : MonoBehaviour
             placementIndicator.SetActive(false);
             GameObject placeFurniture = Instantiate(loadFurniture, placementIndicator.transform.position, placementIndicator.transform.rotation) as GameObject;
 
-            
+
             //placeFurniture.GetComponent<Renderer>().material = furnitureMaterial;
             furniturePool.transform.position = placementIndicator.transform.position;
             placeFurniture.transform.SetParent(furniturePool);
