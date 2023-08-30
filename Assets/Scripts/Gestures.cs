@@ -28,6 +28,11 @@ public class Gestures : MonoBehaviour
     private Vector3 maxScale = new Vector3(2f, 2f, 2f);
     private float prevHeight;
 
+    private Vector2 prevTouchPos;
+    private const float rotationSpeed = 0.05f;
+    private float prevRotationAmount;
+    private float rotationAngle = 0;
+
     // Update is called once per frame
     void Update()
     {
@@ -53,11 +58,18 @@ public class Gestures : MonoBehaviour
 
                 if (!ignoreTouchInput)
                 {
-                    if (Input.touchCount == 2 && (controllingStatus == string.Empty || controllingStatus == "zoom"))
+                    if (Input.touchCount == 3 && (controllingStatus == string.Empty || controllingStatus == "rotation"))
+                    {
+                        controllingStatus = "rotation";
+                        FurnitureRotationByThreeFingers(touches[1]);
+                    }
+                    else if (Input.touchCount == 2 && (controllingStatus == string.Empty || controllingStatus == "zoom"))
                     {
                         controllingStatus = "zoom";
                         if (prevHeight == 0)
+                        {
                             prevHeight = GetHeight(placeFurniture);
+                        }
                         PinchZoom(touches[0], touches[1]);
                     }
                     else if (Input.touchCount == 1 && (controllingStatus == string.Empty || controllingStatus == "moving"))
@@ -69,6 +81,7 @@ public class Gestures : MonoBehaviour
 
                 if (touches[0].phase == TouchPhase.Ended)
                 {
+                    prevTouchPos = Vector2.zero;
                     controllingStatus = "";
                     ignoreTouchInput = true;
                     touchIgnoreTimer = 0f;
@@ -82,6 +95,7 @@ public class Gestures : MonoBehaviour
                 placeFurniture = furniturePool.GetChild(0).gameObject;
                 prevScale = new Vector3(1f, 1f, 1f);
                 prevHeight = 0f;
+                prevRotationAmount = 0f;
             }
             catch (Exception e)
             {
@@ -137,7 +151,7 @@ public class Gestures : MonoBehaviour
             }
             else
             {
-                if (initialDistance > currentDistance)//축소
+                if (initialDistance > currentDistance)
                 {
                     if (minScale.x >= prevScale.x)
                         return;
@@ -153,6 +167,32 @@ public class Gestures : MonoBehaviour
                 prevScale = furniturePool.transform.localScale;
 
             }
+        }
+    }
+
+    // Rotate object(furniture) by user's three finger touch and swipe.
+    private void FurnitureRotationByThreeFingers(Touch touch2)
+    {
+        if (Input.touchCount == 3)
+        {
+            if (prevTouchPos == Vector2.zero)
+            {
+                prevTouchPos = touch2.position;
+            }
+            else
+            {
+                float horizontalMovement = touch2.position.x - prevTouchPos.x;
+                float rotationAmount = horizontalMovement * rotationSpeed * -1;
+
+                if (rotationAmount != prevRotationAmount)
+                {
+                    prevRotationAmount = rotationAmount;
+                    rotationAngle = (rotationAngle + rotationAmount) % 360;
+
+                    furniturePool.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.up);
+                }
+            }
+
         }
     }
 
