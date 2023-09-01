@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class ApplyTexture : MonoBehaviour
 {
     public Material material;
 
-    private Texture specular;
-    private Texture albedo;
-    private Texture normal;
+    private Texture2D specular;
+    private Texture2D albedo;
+    private Texture2D normal;
+
+    byte[] specularBytes = File.ReadAllBytes("/data/data/com.DefaultCompany.IPL_Test/files/texture_ks.png");
+    byte[] albedoBytes = File.ReadAllBytes("/data/data/com.DefaultCompany.IPL_Test/files/texture_kd.png");
+    byte[] normalBytes = File.ReadAllBytes("/data/data/com.DefaultCompany.IPL_Test/files/texture_n.png");
 
     private void Awake()
     {
-        specular = Resources.Load<Texture>("Furniture/texture_ks");
-        albedo = Resources.Load<Texture>("Furniture/texture_kd");
-        normal = Resources.Load<Texture>("Furniture/texture_n");
+        specular = new Texture2D(0, 0);
+        albedo = new Texture2D(0, 0);
+        normal = new Texture2D(0, 0);
+
+        specular.LoadImage(specularBytes);
+        albedo.LoadImage(albedoBytes);
+        normal.LoadImage(normalBytes);
     }
 
     // Start is called before the first frame update
