@@ -21,10 +21,12 @@ public class FurnitureCollocationButton : MonoBehaviour
     private GameObject loadFurniture;
     private string furniturePath;
 
+    public FilePathManager filePathManager;
+
     // Start is called before the first frame update.
     void Awake()
     {
-        furniturePath = "/Users/junseop/Desktop/sdfasdf/a/mesh.obj";
+        furniturePath = filePathManager.objectPath + filePathManager.objectName;
         button.onClick.AddListener(CollocationButtonClickEvent);
     }
 

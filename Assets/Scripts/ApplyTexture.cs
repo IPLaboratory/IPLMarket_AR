@@ -11,12 +11,18 @@ public class ApplyTexture : MonoBehaviour
     private Texture2D albedo;
     private Texture2D normal;
 
-    byte[] specularBytes = File.ReadAllBytes("/data/data/com.DefaultCompany.IPL_Test/files/texture_ks.png");
-    byte[] albedoBytes = File.ReadAllBytes("/data/data/com.DefaultCompany.IPL_Test/files/texture_kd.png");
-    byte[] normalBytes = File.ReadAllBytes("/data/data/com.DefaultCompany.IPL_Test/files/texture_n.png");
+    public FilePathManager FilePathManager;
+
+    byte[] specularBytes;
+    byte[] albedoBytes;
+    byte[] normalBytes;
 
     private void Awake()
     {
+        specularBytes = File.ReadAllBytes(FilePathManager.specularTexturePath + FilePathManager.specularTextureName);
+        albedoBytes = File.ReadAllBytes(FilePathManager.albedoTexturePath + FilePathManager.albedoTextureName);
+        normalBytes = File.ReadAllBytes(FilePathManager.normalMapPath + FilePathManager.normalMapName);
+
         specular = new Texture2D(0, 0);
         albedo = new Texture2D(0, 0);
         normal = new Texture2D(0, 0);
