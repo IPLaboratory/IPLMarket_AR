@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARFoundation;
 using Dummiesman;
+using UnityEngine.Android;
+using System.IO;
 
 public class FurnitureCollocationButton : MonoBehaviour
 {
@@ -18,7 +20,6 @@ public class FurnitureCollocationButton : MonoBehaviour
     public GameObject gesture;
 
     private GameObject instantiatedGesture;
-    private GameObject loadFurniture;
     private string furniturePath;
 
     public FilePathManager filePathManager;
@@ -26,7 +27,16 @@ public class FurnitureCollocationButton : MonoBehaviour
     // Start is called before the first frame update.
     void Awake()
     {
-        furniturePath = filePathManager.objectPath + filePathManager.objectName;
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageRead);
+        }
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+        }
+
+        furniturePath = filePathManager.filePath + "/" + filePathManager.objectName;
         button.onClick.AddListener(CollocationButtonClickEvent);
     }
 

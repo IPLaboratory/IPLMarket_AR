@@ -1228,6 +1228,7 @@ MonoBehaviour:
   arRaycastManager: {fileID: 1563121798}
   furnitureMaterial: {fileID: 2100000, guid: 2b6da7d6462ad4fef98e4c6e18367638, type: 2}
   gesture: {fileID: 6233445130735353488, guid: 74e1386be971c4f17bc4d5b5b784081a, type: 3}
+  filePathManager: {fileID: 11400000, guid: 3382203c60b1145a3bbb5a1105888a08, type: 2}
 --- !u!114 &1563121803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,6 +1375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 2b6da7d6462ad4fef98e4c6e18367638, type: 2}
+  FilePathManager: {fileID: 11400000, guid: 3382203c60b1145a3bbb5a1105888a08, type: 2}
 --- !u!114 &1689315704
 MonoBehaviour:
   m_ObjectHideFlags: 0

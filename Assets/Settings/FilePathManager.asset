@@ -16,7 +16,4 @@ MonoBehaviour:
   albedoTextureName: texture_kd.png
   specularTextureName: texture_ks.png
   normalMapName: texture_n.png
-  objectPath: /Users/junseop/Desktop/sdfasdf/a/
-  albedoTexturePath: /Users/junseop/Desktop/sdfasdf/a/
-  specularTexturePath: /Users/junseop/Desktop/sdfasdf/a/
-  normalMapPath: /Users/junseop/Desktop/sdfasdf/a/
+  filePath: /storage/emulated/0/meshes

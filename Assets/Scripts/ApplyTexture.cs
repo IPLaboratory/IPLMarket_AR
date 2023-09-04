@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Android;
 
 public class ApplyTexture : MonoBehaviour
 {
@@ -17,11 +18,12 @@ public class ApplyTexture : MonoBehaviour
     byte[] albedoBytes;
     byte[] normalBytes;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        specularBytes = File.ReadAllBytes(FilePathManager.specularTexturePath + FilePathManager.specularTextureName);
-        albedoBytes = File.ReadAllBytes(FilePathManager.albedoTexturePath + FilePathManager.albedoTextureName);
-        normalBytes = File.ReadAllBytes(FilePathManager.normalMapPath + FilePathManager.normalMapName);
+        specularBytes = File.ReadAllBytes(FilePathManager.filePath + "/" + FilePathManager.specularTextureName);
+        albedoBytes = File.ReadAllBytes(FilePathManager.filePath + "/" + FilePathManager.albedoTextureName);
+        normalBytes = File.ReadAllBytes(FilePathManager.filePath + "/" + FilePathManager.normalMapName);
 
         specular = new Texture2D(0, 0);
         albedo = new Texture2D(0, 0);
@@ -30,11 +32,7 @@ public class ApplyTexture : MonoBehaviour
         specular.LoadImage(specularBytes);
         albedo.LoadImage(albedoBytes);
         normal.LoadImage(normalBytes);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         material.SetTexture("_specular", specular);
         material.SetTexture("_albedo", albedo);
         material.SetTexture("_normal", normal);

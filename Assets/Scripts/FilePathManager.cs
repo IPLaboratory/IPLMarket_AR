@@ -8,8 +8,5 @@ public class FilePathManager : ScriptableObject
     public string specularTextureName;
     public string normalMapName;
 
-    public string objectPath;
-    public string albedoTexturePath;
-    public string specularTexturePath;
-    public string normalMapPath;
+    public string filePath;
 }
