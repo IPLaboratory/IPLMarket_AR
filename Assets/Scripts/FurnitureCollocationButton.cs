@@ -22,6 +22,7 @@ public class FurnitureCollocationButton : MonoBehaviour
     public FilePathManager filePathManager;
 
     private GameObject instantiatedGesture;
+    GameObject placeFurniture;
 
     private string furniturePath;
 
@@ -40,6 +41,8 @@ public class FurnitureCollocationButton : MonoBehaviour
         }
 
         furniturePath = filePathManager.filePath + "/" + filePathManager.objectName;
+        placeFurniture = new OBJLoader().Load(furniturePath);
+        Destroy(placeFurniture);
         button.onClick.AddListener(CollocationButtonClickEvent);
     }
 
@@ -53,7 +56,7 @@ public class FurnitureCollocationButton : MonoBehaviour
             button.GetComponent<Image>().sprite = buttonImages[0];
             placementIndicator.SetActive(false);
 
-            GameObject placeFurniture = new OBJLoader().Load(furniturePath);
+            placeFurniture = new OBJLoader().Load(furniturePath);
             placeFurniture.transform.position = placementIndicator.transform.position;
             placeFurniture.transform.rotation = placementIndicator.transform.rotation;
 
