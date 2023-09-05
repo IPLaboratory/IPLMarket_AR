@@ -16,4 +16,4 @@ MonoBehaviour:
   albedoTextureName: texture_kd.png
   specularTextureName: texture_ks.png
   normalMapName: texture_n.png
-  filePath: /storage/emulated/0/meshes
+  filePath: /storage/emulated/0/Download/mesh
