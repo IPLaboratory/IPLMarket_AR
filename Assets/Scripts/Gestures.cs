@@ -33,6 +33,8 @@ public class Gestures : MonoBehaviour
     private float prevRotationAmount;
     private float rotationAngle = 0;
 
+    private Vector3 correctionValueForScale = new Vector3(0.35f, 0.35f, 0.35f);
+
     // Update is called once per frame
     void Update()
     {
@@ -93,7 +95,7 @@ public class Gestures : MonoBehaviour
             try
             {
                 placeFurniture = furniturePool.GetChild(0).gameObject;
-                prevScale = new Vector3(1f, 1f, 1f);
+                prevScale = correctionValueForScale;
                 prevHeight = 0f;
                 prevRotationAmount = 0f;
             }

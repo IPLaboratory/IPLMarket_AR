@@ -6,6 +6,7 @@ using UnityEngine.XR.ARFoundation;
 using Dummiesman;
 using UnityEngine.Android;
 using System.IO;
+using Unity.VisualScripting;
 
 public class FurnitureCollocationButton : MonoBehaviour
 {
@@ -18,12 +19,13 @@ public class FurnitureCollocationButton : MonoBehaviour
     public ARRaycastManager arRaycastManager;
     public Material furnitureMaterial;
     public GameObject gesture;
+    public FilePathManager filePathManager;
 
     private GameObject instantiatedGesture;
-    
+
     private string furniturePath;
 
-    public FilePathManager filePathManager;
+    private Vector3 correctionValueForScale = new Vector3(0.35f, 0.35f, 0.35f);
 
     // Start is called before the first frame update.
     void Awake()
@@ -61,16 +63,16 @@ public class FurnitureCollocationButton : MonoBehaviour
             placeFurniture.transform.position = new Vector3(
                 placementIndicator.transform.position.x, placementIndicator.transform.position.y + (GetHeight(placeFurniture) / 2f), placementIndicator.transform.position.z);
 
+            furniturePool.transform.localScale = correctionValueForScale;
             buttonText.SetText("Delete");
         }
         else if (buttonText.text.Equals("Delete"))
         {
             button.GetComponent<Image>().sprite = buttonImages[1];
-            furniturePool.transform.localScale = new Vector3(1f, 1f, 1f);
 
             placementIndicator.SetActive(true);
             Destroy(furniturePool.GetChild(0).gameObject);
-
+            furniturePool.transform.localScale = new Vector3(1f, 1f, 1f);
             buttonText.SetText("Image_Input");
             Destroy(instantiatedGesture);
         }
