@@ -41,7 +41,7 @@ public class PlaceIndicator : MonoBehaviour
             }
 
             placementIndicator.transform.SetPositionAndRotation(
-                new Vector3(placementPose.position.x, placementPose.position.y + 0.1f, placementPose.position.z), placementPose.rotation);
+                new Vector3(placementPose.position.x, placementPose.position.y + 0.2f, placementPose.position.z), placementPose.rotation);
         }
         else
         {
