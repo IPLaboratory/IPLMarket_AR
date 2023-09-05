@@ -6,11 +6,11 @@ When trading used furniture, AR services are provided so that the furniture can 
 
 ## Environment
 
-Unity 2022.3.4f1
-Android 10.0 (API level 29)
-AR Foundation 5.0.7
-Google ARCore XR Plugin 5.0.7
-Universal RP 14.0.8
+Unity 2022.3.4f1  
+Android 10.0 (API level 29)  
+AR Foundation 5.0.7  
+Google ARCore XR Plugin 5.0.7  
+Universal RP 14.0.8  
 
 ## Main Features
 
