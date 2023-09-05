@@ -20,6 +20,7 @@ public class FurnitureCollocationButton : MonoBehaviour
     public GameObject gesture;
 
     private GameObject instantiatedGesture;
+    
     private string furniturePath;
 
     public FilePathManager filePathManager;

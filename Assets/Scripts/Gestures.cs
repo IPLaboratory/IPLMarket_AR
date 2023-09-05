@@ -134,6 +134,8 @@ public class Gestures : MonoBehaviour
             {
                 var hitPose = hits[0].pose;
                 furniturePool.transform.position = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z);
+                placeFurniture.transform.position = new Vector3(
+                    hitPose.position.x, hitPose.position.y + (GetHeight(placeFurniture) / 2f * prevScale.x), hitPose.position.z);
             }
         }
     }
