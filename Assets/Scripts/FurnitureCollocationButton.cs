@@ -12,7 +12,7 @@ public class FurnitureCollocationButton : MonoBehaviour
 {
     [SerializeField]
     GameObject placementIndicator;
-
+    
     public Sprite[] buttonImages;
     public Button button;
     public Transform furniturePool;
